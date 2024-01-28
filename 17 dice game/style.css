@@ -1,0 +1,26 @@
+body{
+    text-align: center;
+    height: 100vh;
+    box-sizing: border-box;
+}
+#the-game div{
+    width: 200px;
+    height: 200px;
+    /*border line */
+    margin: 4rem;
+}
+#the-game{
+    display: flex;
+    justify-content:center;
+    margin-top: 1rem;
+}
+h3{
+    display: inline-block;
+    margin-left: 8rem;
+    margin-right:8rem;
+}
+img{
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}
