@@ -16,6 +16,6 @@ const someString = "camelCasing";
 const checkCap2 = string=>{
     let res = '';
     let letters = string.split("");
-    console.log(letters);
+    
 }
 checkCap2(someString);
