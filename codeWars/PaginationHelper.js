@@ -5,8 +5,8 @@ class PaginationHelper {
     constructor(collection, itemsPerPage) {
 	// The constructor takes in an array of items and a integer indicating how many
 	// items fit within a single page
-    this.setCollection = collection;
-    this.setItemsPerPage = itemsPerPage;
+    this._collection = collection;
+    this._itemsPerPage = itemsPerPage;
 	}
     totalPageIndex(){
         return (this.pageCount() -1);
@@ -34,27 +34,15 @@ class PaginationHelper {
 	pageIndex(itemIndex) {
 	// determines what page an item is on. Zero based indexes
 	// this method should return -1 for itemIndex values that are out of range
-    //Collection of 6, items per page 4, item index 2 returns 3 but should be 0
+    //Item count 30 items per page = 7 pageIndex(13) expected 2 to equal 1.
     if(itemIndex > (this._collection.length -1) || itemIndex < 0){
         return -1;
     }else{
-        return parseInt((itemIndex + 1)/ this._itemsPerPage);
+        return Math.floor(itemIndex / this._itemsPerPage);
+    
     }
 	}
-    set setItemsPerPage(value){
-        if(typeof value == "number"){
-            this._itemsPerPage = value;
-            return;
-        }
-        console.error('value should be of type number');
-    }
-    set setCollection(value){
-        if(value.length > 0){
-            this._collection = value;
-            return;
-        }
-        console.error('Your array should be longer than 0.');
-    }
+    
 }
 
 
