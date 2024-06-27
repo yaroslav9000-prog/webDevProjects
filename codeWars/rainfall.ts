@@ -85,7 +85,9 @@ export const variance = (town: string, strng: string) =>{
         return -1;
     }
     const theMean = mean(town, strng);
-    const deviationArray = dataObj[town].map(item=> (Math.pow(item[1]- theMean, 2))).reduce((accumulator, currentValue)=>accumulator+currentValue,0)/12;
+    const deviationArray = dataObj[town]
+    .map(item=> (Math.pow(item[1]- theMean, 2)))
+    .reduce((accumulator, currentValue)=>accumulator+currentValue,0)/12;
     return deviationArray;
 }
 console.log(mean('London', data));
