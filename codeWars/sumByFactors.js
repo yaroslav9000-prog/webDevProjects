@@ -39,26 +39,42 @@ In Fortran - as in any other language - the returned string is not permitted to 
 function sumOfDivided(lst) {
     // your code
     var listWithSum = __spreadArray(__spreadArray([], lst, true), [lst.reduce(function (accumulator, currentValue) { return (accumulator + currentValue); })], false);
-    var newList = listWithSum.map(function (item, index) {
-        if (item < 0) {
-            item *= -1;
-        }
-        var currRoot = Math.floor(Math.sqrt(item));
-        var myFlag = index + 2;
-        var result;
-        while (myFlag < currRoot + 1) {
-            if (item % myFlag === 0) {
-                result = myFlag;
-                break;
+    var maxRoot = Math.floor(Math.sqrt(listWithSum[listWithSum.length - 1]));
+    var arrayOfNumber = [];
+    var arrayOfPrimes = [2, 3];
+    for (var index = 4; index <= maxRoot; index++) {
+        arrayOfNumber.push(index);
+    }
+    for (var index = 0; index < arrayOfNumber.length; index++) {
+        var value = 0;
+        for (var i = 2; i <= maxRoot; i++) {
+            if (arrayOfNumber[index] % i == 0) {
+                continue;
             }
             else {
-                myFlag++;
+                arrayOfPrimes.push(arrayOfNumber[index]);
             }
         }
-        myFlag++;
-        return [result, item];
-    });
-    return newList.sort(function (a, b) { return a[0] - b[0]; });
+    }
+    // const newList = listWithSum.map((item: number, index: number)=>
+    //     {   if(item < 0){
+    //             item *= -1;
+    //         }
+    //         let myFlag = index + 2;
+    //         let result !: number;
+    //         while(myFlag < currRoot + 1){
+    //             if(item % myFlag === 0){
+    //                 result = myFlag;
+    //                 break;
+    //             }else{
+    //                 myFlag ++;
+    //             }
+    //         }
+    //         myFlag++
+    //         return [result, item];
+    //     })
+    // return newList.sort((a, b)=> a[0] - b[0]);
+    return arrayOfPrimes;
 }
 exports.sumOfDivided = sumOfDivided;
 console.log(sumOfDivided([12, 15]));
