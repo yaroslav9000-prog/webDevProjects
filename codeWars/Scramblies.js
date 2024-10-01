@@ -14,35 +14,47 @@ scramble('cedewaraaossoqqyt', 'codewars') ==> True
 scramble('katas', 'steak') ==> False
  */
 function scramble(str1, str2) {
-    var amountOfletters = 0;
-    var str1Array = str1.split("");
-    var str2Array = str2.split("");
-    for (var index = 0; index < str2.length; index++) {
-        // if(str1Array.includes(str2Array[index])){
-        //     const theLetter = str2Array[index];
-        //     let myIndex = 0;
-        //     for(let i =0; i < str1Array.length; i++){
-        //         if(str1Array[i] == theLetter){
-        //             str1Array[i] = "*";
-        //             amountOfletters ++;
-        //             break;
-        //         }
-        //     }
-        // }
-        var indexOfLetter = str1Array.indexOf(str2[index]);
-        if (indexOfLetter != -1) {
-            str1Array[indexOfLetter] = "*";
-            amountOfletters++;
+    // let amountOfletters = 0;
+    // const str1Array = str1.split("");
+    // const str2Length = str2.length;
+    // for(let index=0; index < str2Length; index++){
+    //     let indexOfLetter = str1.indexOf(str2[index]);
+    //     if(indexOfLetter != -1){
+    //         str1Array[indexOfLetter] = "*";
+    //         amountOfletters++;
+    //     }     
+    // }
+    // return amountOfletters === str2Length;
+    var letterObj = {};
+    for (var _i = 0, str1_1 = str1; _i < str1_1.length; _i++) {
+        var char = str1_1[_i];
+        if (letterObj[char] == undefined) {
+            letterObj[char] = 1;
+        }
+        else {
+            letterObj[char]++;
         }
     }
-    return amountOfletters === str2.length;
+    for (var _a = 0, str2_1 = str2; _a < str2_1.length; _a++) {
+        var char = str2_1[_a];
+        if (letterObj[char] == undefined) {
+            return false;
+        }
+        letterObj[char]--;
+        if (letterObj[char] == -1) {
+            return false;
+        }
+    }
+    return true;
 }
 exports.scramble = scramble;
-console.log(scramble("rkqodlw", "world")); // true
-console.log(scramble("cedewaraaossoqqyt", "codewars")); // true
-console.log(scramble("katas", "steak")); // false
+//   console.log(scramble("rkqodlw", "world"));// true
+//   console.log(scramble("cedewaraaossoqqyt", "codewars")); // true
+//   console.log(scramble("katas", "steak")); // false
+//   console.log(scramble('javscripts', 'javascript')) //false
+//   console.log(scramble('scriptsjava','javascript')) // true
+//   console.log(scramble('jscripts','javascript')) // false
+//   console.log(scramble('aabbcamaomsccdd', 'commas')) // true
+//   console.log(scramble('sammoc', 'commas')) // false
 console.log(scramble('javscripts', 'javascript')); //false
 console.log(scramble('scriptsjava', 'javascript')); // true
-console.log(scramble('jscripts', 'javascript')); // false
-console.log(scramble('aabbcamaomsccdd', 'commas')); // true
-console.log(scramble('sammoc', 'commas')); // false
